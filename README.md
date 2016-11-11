@@ -36,7 +36,7 @@ $config = array(
                 "route" => "/", 
                 "method" => "GET|POST", 
                 "target" => function($request, $response, $args){
-                    $container = $this->getContainer();
+                    $container = hubert()->container();
                     $container["eventManager"]->attach('do', function ($e) {
                         $event = $e->getName();
                         $params = $e->getParams();
@@ -54,8 +54,8 @@ $config = array(
         )
 );
 
-$app->loadConfig($config);
-$app->emit($app->run());
+hubert($config);
+hubert->emit(hubert->run());
 ```
 
 For more see the example in this repository.
