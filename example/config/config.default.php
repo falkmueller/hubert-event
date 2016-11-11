@@ -9,7 +9,7 @@ return array(
                 "route" => "/", 
                 "method" => "GET|POST", 
                 "target" => function($request, $response, $args){
-                    $container = $this->getContainer();
+                    $container = hubert()->container();
                     $container["eventManager"]->attach('do', function ($e) {
                         $event = $e->getName();
                         $params = $e->getParams();
@@ -21,7 +21,7 @@ return array(
                         return "eventresult";
                     });
                     
-                    $a = $container["eventManager"]->trigger('do', null, ["test" => 2]);
+                    $a = $container->eventManager->trigger('do', null, ["test" => 2]);
                     print_r($a->last());
                 }
             ),
